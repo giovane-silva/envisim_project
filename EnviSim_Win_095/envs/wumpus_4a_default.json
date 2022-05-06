@@ -1,0 +1,10 @@
+{
+  "file": "bckgnd_640_4.png",
+  "grid": 4,
+  "pheromones_duration" : 12,
+  "villains": ["villain_128.png", 1,  [0,1] ],
+  "agent": ["agent_128.png", 1, [0,3] ],
+  "start": ["startPosition_128.png", 1, [0,3] ],
+  "obstacles": ["obstacle_128.png", 2, [[2,0], [2,3]] ],
+  "reward": ["reward_128.png", 1, [2,1] ]
+}

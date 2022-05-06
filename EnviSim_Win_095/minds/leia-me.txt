@@ -1,0 +1,35 @@
+                        Definição de como são as matrizes de conexão W:
+
+** O num de 'objetos' Json (matrizes - exceto "structure") determina quantos ESTADOS a máquina tem, por exemplo:
+"move" : { }
+"call" : { }
+"structure" : { }    -- desconsiderada
+tem DOIS estados de mente - um que lê entradas depois do 'move' e outro depois do 'call'
+
+** O número de 'pares de valores' dentro de cada 'objeto' será o número de INPUTS de cada matriz, por exemplo:
+    "nothing" :     [],
+    "bs" :          [],
+    "bfs" :         [],
+    "flash" :       [],
+    "danger" :      [],
+    "obstruction" : [],
+    "goal" :        [],
+    "initial" :     [],
+    "boundary" :    [],
+    "cannot" :      []
+tem 10 sinais de entrada para a matriz.
+
+** Cada entrada de sinal gera uma saída, codificada em um "array'. O número de saídas no array determina a quantidade de OUTPUTS da mente - codificada em PROBABILIDADE de ativação daquela saída, por exemplo:
+    "nothing" :     [0.15, 0.25, 0.6, 0.0],
+quer dizer que a entrada "nothing" tem probabilidades: 15% de gerar ROT_L, 25% de gerar ROT_R, 60% de gerar MOVE, e 0% de gerar CALL.
+
+** A forma de codificação das saídas está definida no 'objeto' "structure" e é desconsiderada para a mente - serve para indicar o que é cada uma das saídas da 'array', grau de rotação, energia inicial, por exemplo:
+  "structure": {
+    "labels" : ["rot_L", "rot_R", "move_F", "call_F"],
+    "rotation" : 90,
+    "energy" : 200
+  }
+indica que os elementos da array significam :[rotate left, rotate right, move forward, call forward]
+
+** o valor no par { "rotation" : 90 } indica quantos graus o agente deve girar a cada comando rotate (45 ou 90 graus)
+** o valor no par { "energy" : 200 } indica quantos 'moves' o agente pode fazer para resolver o problema antes de morrer. O agente tem, no exemplo, 200 passos para encontrar reward + 200 passos para retornar à posição inicial.
